@@ -1,0 +1,116 @@
+##### ENDPOINTS USERS #####
+###Solicitud GET ALL USERS
+GET http://localhost:3000/api/users
+
+###Solicitud GET ONE USER
+GET http://localhost:3000/api/users/id
+
+
+### Solicitud POST NEW USER
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+   "email": "dani@gmail.com",
+    "password": "dani123",
+    "profile": {
+            "firstName": "Daniela",
+            "lastName": "Fernandez",
+            "dni": "35454456",
+            "gender": "Femenino",
+            "address": "19 de Abril",
+            "city": "San Salvador de Jujuy",
+            "country": "Argentina",
+            "cellPhone": "555-123-4567",
+            "photo": "df.jpg"
+        }
+}
+
+### Solicitud PUT UPDATE USER
+###Si el usuario no tiene perfil asociado, en el id de profile se debe asignar 0 de lo contrario se tiene ingresar el id de profile para actualizar el perfil del usuario
+PUT http://localhost:3000/api/users/id
+Content-Type: application/json
+
+{
+        "email": "emaI@gmail.com",
+        "password": "emaI123",
+        "profile": {
+            "id": 2,
+            "firstName": "Ema",
+            "lastName": "Perez",
+            "dni": "40111222",
+            "gender": "Masculino",
+            "address": "Belgrano 500",
+            "city": "Jujuy",
+            "country": "Argentina",
+            "cellPhone": "3884555111",
+            "photo": "ep.jpg"
+        }
+}
+
+### Solicitud DELETE DELETE USER
+DELETE http://localhost:3000/api/users/id
+
+##### ENDPOINTS USERS #####
+### Solicitud POST JWT SIGN UP
+  POST http://localhost:3000/api/signup
+  Content-Type: application/json
+
+  {
+    "email": "ema@gmail.com",
+    "password": "ema123"  
+  }
+
+##### Solicitud POST SIGN IN
+POST http://localhost:3000/api/signin
+Content-Type: application/json
+
+  {
+    "email": "ema@gmail.com",
+    "password": "ema123"
+  }
+
+##### ENDPOINTS RECIPES #####
+###Solicitud GET ALL RECIPES
+GET http://localhost:3000/api/recipe
+Authorization: Bearer your_access_token
+
+###Solicitud GET ONE RECIPE
+GET http://localhost:3000/api/recipe/id
+Authorization: Bearer your_access_token
+
+### Solicitud POST NEW RECIPE
+### El id debe ser un usuario ya creado y se le asignara la nueva receta al usuario
+POST http://localhost:3000/api/recipe/id
+Authorization: Bearer your_access_token
+Content-Type: application/json
+
+{
+   "recipe": {
+    "name": "Nuevo Ejemplo",
+    "description": "Nuevo Ejemplo",
+    "image": "https://ejemplonuevo.com/imagen.jpg",
+    "ingredients": "Nuevo Ejemplo",
+    "preparation": "1. Nuevo Ejemplo",
+    "estimatedPreparationTime": 60
+  }
+}
+
+### Solicitud POST UPDATE RECIPE
+### El id debe ser de la receta ya creada y se le actualizara la receta al usuario
+PUT http://localhost:3000/api/recipe/id
+Authorization: Bearer your_access_token
+Content-Type: application/json
+
+{
+    "name": "Ejemplo Actualizado",
+    "description": "Ejemplo Actualizdo",
+    "image": "https://ejemploactualizado.com/imagen.jpg",
+    "ingredients": "Ejemplo Actualizado",
+    "preparation": "1. Ejemplo Actualizado",
+    "estimatedPreparationTime": 10
+}
+
+### Solicitud DELETE DELETE RECIPE
+DELETE http://localhost:3000/api/recipe/id
+Authorization: Bearer your_access_token

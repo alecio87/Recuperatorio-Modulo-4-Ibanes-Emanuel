@@ -1,0 +1,274 @@
+{
+	"info": {
+		"_postman_id": "e862202d-1ccd-4241-9dcf-47bcaa984792",
+		"name": "TP_Modulo_04",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "11177950"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "All Users with profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoiZGFuaUBnbWFpbC5jb20iLCJpYXQiOjE2OTk0NzAwMTIsImV4cCI6MTY5OTQ3MDMxMn0.Bb3opgXTZ4-s958ToJX0YflRAXQGiyIHK77r65Nm79g"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "One User with profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoid2FsdGVyQGdtYWlsLmNvbSIsImlhdCI6MTY5OTQxMTI4NSwiZXhwIjoxNjk5NDExNTg1fQ.TtPFQn-NqyIJLElPedamCVJZKUAPsgQghiyNB-VKE2g"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/users/21"
+					},
+					"response": []
+				},
+				{
+					"name": "New User with profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"maxi@gmail.com\",\r\n    \"password\": \"maxi123\",\r\n    \"profile\": {\r\n            \"firstName\": \"maximo\",\r\n            \"lastName\": \"juarez\",\r\n            \"dni\": \"3545454565\",\r\n            \"gender\": \"Male\",\r\n            \"address\": \"19 de Abril\",\r\n            \"city\": \"San Salvador de Jujuy\",\r\n            \"country\": \"Argentina\",\r\n            \"cellPhone\": \"555-123-4567\",\r\n            \"photo\": \"mx.jpg\"\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User with profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImVtYWlsIjoid2FsdGVyQGdtYWlsLmNvbSIsImlhdCI6MTY5OTQxMjA3NCwiZXhwIjoxNjk5NDEyMzc0fQ.e0TaxE53gyoVwb5z_I_82VaFWlmVBiYuUSdNbHKmuns"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"lm@gmail.com\",\r\n        \"password\": \"lolo123\",\r\n        \"profile\": {\r\n            \"id\": 22,\r\n            \"firstName\": \"matias\",\r\n            \"lastName\": \"ibañes\",\r\n            \"dni\": \"50123456\",\r\n            \"gender\": \"Male\",\r\n            \"address\": \"Salta 900\",\r\n            \"city\": \"Salta\",\r\n            \"country\": \"Argentina\",\r\n            \"cellPhone\": \"3884123456\",\r\n            \"photo\": \"lolo.jpg\"\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/26"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User with profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/users/24"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipe",
+			"item": [
+				{
+					"name": "All Recipes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImVtYWlsIjoibWF4aUBnbWFpbC5jb20iLCJpYXQiOjE2OTk5MTAwMzYsImV4cCI6MTY5OTkxMDMzNn0.sLbCIKAcMaN38xEdwtS1VL9vVj1ZL1mFCIlSFpqKiDU"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/recipe"
+					},
+					"response": []
+				},
+				{
+					"name": "One Recipe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImVtYWlsIjoibWF4aUBnbWFpbC5jb20iLCJpYXQiOjE2OTk5MTAwMzYsImV4cCI6MTY5OTkxMDMzNn0.sLbCIKAcMaN38xEdwtS1VL9vVj1ZL1mFCIlSFpqKiDU"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/recipe/27"
+					},
+					"response": []
+				},
+				{
+					"name": "New Recipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImVtYWlsIjoibWF4aUBnbWFpbC5jb20iLCJpYXQiOjE2OTk5MTAxNjQsImV4cCI6MTY5OTkxMDQ2NH0.e5hkxCGJROvKdJyTn2KAWBcxY6gKRqk4eUrARLdWxRE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"recipe\": {\r\n    \"name\": \"Pastel 5555555\",\r\n    \"description\": \"Un delicioso pastel de chocolate con cobertura de crema\",\r\n    \"image\": \"https://ejemplo.com/imagen_pastel.jpg\",\r\n    \"ingredients\": \"200g de chocolate, 150g de azúcar, 3 huevos, 100g de harina\",\r\n    \"preparation\": \"1. Funde el chocolate en un recipiente al baño María. 2. Bate los huevos y el azúcar en un tazón. 3. Agrega el chocolate derretido a la mezcla y mezcla bien. 4. Añade la harina tamizada y revuelve.\",\r\n    \"estimatedPreparationTime\": 60\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/recipe/24"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Recipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImVtYWlsIjoibWF4aUBnbWFpbC5jb20iLCJpYXQiOjE2OTk5MTAyMTEsImV4cCI6MTY5OTkxMDUxMX0.Oyyolza-MLXvOE9RlEI6FfsOPJR62RG6Gg1CnfQA_uI"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sopa de Mani\",\r\n    \"description\": \"Una sopa de tomate casera con un toque de albahaca fresca.\",\r\n    \"image\": \"https://ejemplo.com/sopa_tomate.jpg\",\r\n    \"ingredients\": \"Tomates maduros, cebolla, ajo, caldo de pollo, albahaca fresca, sal, pimienta, aceite de oliva\",\r\n    \"preparation\": \"1. Sofríe \",\r\n    \"estimatedPreparationTime\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/recipe/29"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Recipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjQsImVtYWlsIjoibWF4aUBnbWFpbC5jb20iLCJpYXQiOjE2OTk5MTAzMDUsImV4cCI6MTY5OTkxMDYwNX0.PMBti0N3VQKAtgyJgVZQxJ9Led0qn5n_6RucKlfoADA"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:3000/api/recipe/29"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login JWT Token",
+			"item": [
+				{
+					"name": "JWT - Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dani@gmail.com\",\r\n    \"password\": \"dani\"  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "JWT - Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"email\": \"maxi@gmail.com\",\r\n    \"password\": \"maxi123\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/signin"
+					},
+					"response": []
+				},
+				{
+					"name": "JWT - Refresh Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJlbWFudWVsQGdtYWlsLmNvbSIsImlhdCI6MTY5OTMxNTQwNiwiZXhwIjoxNjk5MzE1NDI2fQ.Z7O3GpPJ9DcvlpMSEU4mDSxgeT3sOUqSKZApBoWv3N0"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IndhbHRlckBnbWFpbC5jb20iLCJpYXQiOjE2OTk0MDc2ODcsImV4cCI6MTcwNzE4MzY4N30.SuenUBUvTskVshmpJXXSBq4YEBBuXvGninxUpqdoGwo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/token"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
