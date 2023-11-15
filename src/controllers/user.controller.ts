@@ -35,8 +35,26 @@ export const getUsers = async (req: Request, res: Response) => {
         recipe: true,
       },
     });
-
-    return res.json(users);
+    const mappedUsers = users.map((user) => ({
+      idUser: user.id,
+      email: user.email,
+      profile: user.profile
+        ? {
+            idProfile: user.profile.id,
+            firstName: user.profile.firstName,
+            lastName: user.profile.lastName,
+          }
+        : null,
+      recipes: user.recipe.map((recipe) => ({
+        idRecipe: recipe.id,
+        name: recipe.name,
+        description: recipe.description,
+        ingredients: recipe.ingredients,
+        preparation: recipe.preparation,
+        estimatedPreparationTime: recipe.estimatedPreparationTime,
+      })),
+    }));
+    return res.json(mappedUsers);
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).json({ message: error.message });
@@ -52,7 +70,28 @@ export const getUser = async (req: Request, res: Response) => {
       relations: ["profile", "recipe"],
     });
     if (!user) return res.status(404).json({ message: "User not found" });
-    return res.json(user);
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+    const mappedUser = {
+      idUser: user.id,
+      email: user.email,
+      profile: user.profile
+        ? {
+            idProfile: user.profile.id,
+            firstName: user.profile.firstName,
+            lastName: user.profile.lastName,
+          }
+        : null,
+      recipes: user.recipe.map((recipe) => ({
+        idRecipe: recipe.id,
+        name: recipe.name,
+        description: recipe.description,
+        ingredients: recipe.ingredients,
+        preparation: recipe.preparation,
+        estimatedPreparationTime: recipe.estimatedPreparationTime,
+      })),
+    };
+    return res.json(mappedUser);
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).json({ message: error.message });
@@ -61,27 +100,46 @@ export const getUser = async (req: Request, res: Response) => {
 };
 
 export const createUser = async (req: Request, res: Response) => {
-  const { email, password, profile } = req.body;
+  try {
+    const { email, password, profile } = req.body;
 
-  const profileUser = new Profile();
-  profileUser.firstName = profile.firstName;
-  profileUser.lastName = profile.lastName;
-  profileUser.dni = profile.dni;
-  profileUser.gender = profile.gender;
-  profileUser.address = profile.address;
-  profileUser.city = profile.city;
-  profileUser.country = profile.country;
-  profileUser.cellPhone = profile.cellPhone;
-  profileUser.photo = profile.photo;
-  await profileUser.save();
+    const profileUser = new Profile();
+    profileUser.firstName = profile.firstName;
+    profileUser.lastName = profile.lastName;
+    profileUser.dni = profile.dni;
+    profileUser.gender = profile.gender;
+    profileUser.address = profile.address;
+    profileUser.city = profile.city;
+    profileUser.country = profile.country;
+    profileUser.cellPhone = profile.cellPhone;
+    profileUser.photo = profile.photo;
+    await profileUser.save();
 
-  const user = new User();
-  user.email = email;
-  user.password = await createHash(password);
-  user.profile = profileUser;
-  await user.save();
+    const user = new User();
+    user.email = email;
+    user.password = await createHash(password);
+    user.profile = profileUser;
+    await user.save();
 
-  return res.json(user);
+    const mappedUser = {
+      idUser: user.id,
+      email: user.email,
+      profile: {
+        idProfile: user.profile.id,
+        firstName: user.profile.firstName,
+        lastName: user.profile.lastName,
+        address: user.profile.address,
+        cellPhone: user.profile.cellPhone,
+        photo: user.profile.photo,
+      },
+    };
+
+    return res.status(201).json(mappedUser);
+  } catch (error) {
+    if (error instanceof Error) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
 };
 
 export const updateUser = async (req: Request, res: Response) => {
@@ -96,6 +154,20 @@ export const updateUser = async (req: Request, res: Response) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+
+    const mappedUser = {
+      idUser: user.id,
+      email: user.email,
+      profile: {
+        idProfile: user.profile.id,
+        firstName: user.profile.firstName,
+        lastName: user.profile.lastName,
+        dni: user.profile.dni,
+        gender: user.profile.gender,
+        address: user.profile.address,
+        cellphone: user.profile.cellPhone,
+      },
+    };
 
     if (req.body.email) {
       user.email = req.body.email;
@@ -155,7 +227,7 @@ export const updateUser = async (req: Request, res: Response) => {
 
     await user.save();
 
-    return res.sendStatus(204);
+    return res.status(201).json(mappedUser);
   } catch (error) {
     if (error instanceof Error) {
       return res.status(500).json({ message: error.message });
@@ -177,9 +249,7 @@ export const deleteUser = async (req: Request, res: Response) => {
     }
 
     if (user.recipe && user.recipe.length > 0) {
-      for (const recipe of user.recipe) {
-        await Recipe.remove(recipe);
-      }
+      await Recipe.remove(user.recipe);
     }
 
     if (user.profile) {
@@ -217,7 +287,11 @@ export const signUp = async (
   newUser.email = req.body.email;
   newUser.password = await createHash(req.body.password);
   await newUser.save();
-  return res.status(201).json(newUser);
+  const mappedUser = {
+    id: newUser.id,
+    email: newUser.email,
+  };
+  return res.status(201).json(mappedUser);
 };
 
 //  Login

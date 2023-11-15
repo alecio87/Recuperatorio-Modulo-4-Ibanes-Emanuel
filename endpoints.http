@@ -5,24 +5,23 @@ GET http://localhost:3000/api/users
 ###Solicitud GET ONE USER
 GET http://localhost:3000/api/users/id
 
-
 ### Solicitud POST NEW USER
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-   "email": "dani@gmail.com",
-    "password": "dani123",
+   "email": "cris@gmail.com",
+    "password": "crisl123",
     "profile": {
-            "firstName": "Daniela",
-            "lastName": "Fernandez",
+            "firstName": "Cristian",
+            "lastName": "Cruz",
             "dni": "35454456",
-            "gender": "Femenino",
+            "gender": "Masculino",
             "address": "19 de Abril",
             "city": "San Salvador de Jujuy",
             "country": "Argentina",
             "cellPhone": "555-123-4567",
-            "photo": "df.jpg"
+            "photo": "mc.jpg"
         }
 }
 
@@ -32,12 +31,12 @@ PUT http://localhost:3000/api/users/id
 Content-Type: application/json
 
 {
-        "email": "emaI@gmail.com",
-        "password": "emaI123",
+        "email": "ema@gmail.com",
+        "password": "ema123",
         "profile": {
-            "id": 2,
-            "firstName": "Ema",
-            "lastName": "Perez",
+            "id": 9,
+            "firstName": "Emanuel",
+            "lastName": "Lux",
             "dni": "40111222",
             "gender": "Masculino",
             "address": "Belgrano 500",
@@ -52,16 +51,16 @@ Content-Type: application/json
 DELETE http://localhost:3000/api/users/id
 
 ##### ENDPOINTS USERS #####
-### Solicitud POST JWT SIGN UP
+### Solicitud POST JWT SIGN UP Register
   POST http://localhost:3000/api/signup
   Content-Type: application/json
 
   {
-    "email": "ema@gmail.com",
-    "password": "ema123"  
+    "email": "zoe@gmail.com",
+    "password": "zoe123"  
   }
 
-##### Solicitud POST SIGN IN
+##### Solicitud POST SIGN IN Login
 POST http://localhost:3000/api/signin
 Content-Type: application/json
 
