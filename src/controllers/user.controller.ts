@@ -155,20 +155,6 @@ export const updateUser = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const mappedUser = {
-      idUser: user.id,
-      email: user.email,
-      profile: {
-        idProfile: user.profile.id,
-        firstName: user.profile.firstName,
-        lastName: user.profile.lastName,
-        dni: user.profile.dni,
-        gender: user.profile.gender,
-        address: user.profile.address,
-        cellphone: user.profile.cellPhone,
-      },
-    };
-
     if (req.body.email) {
       user.email = req.body.email;
     }
@@ -227,6 +213,22 @@ export const updateUser = async (req: Request, res: Response) => {
 
     await user.save();
 
+     // Mapea los datos del usuario, incluso si no tiene un perfil
+    const mappedUser = {
+      idUser: user.id,
+      email: user.email,
+      profile: {
+        idProfile: user.profile ? user.profile.id : null,
+        firstName: user.profile ? user.profile.firstName : null,
+        lastName: user.profile ? user.profile.lastName : null,
+        dni: user.profile ? user.profile.dni : null,
+        gender: user.profile ? user.profile.gender : null,
+        address: user.profile ? user.profile.address : null,
+        cellphone: user.profile ? user.profile.cellPhone : null,
+      },
+    };
+
+
     return res.status(201).json(mappedUser);
   } catch (error) {
     if (error instanceof Error) {
@@ -248,15 +250,19 @@ export const deleteUser = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Elimina las recetas asociadas al usuario
     if (user.recipe && user.recipe.length > 0) {
       await Recipe.remove(user.recipe);
     }
 
+    // Elimina el perfil del usuario
     if (user.profile) {
       await user.profile.remove();
     }
 
+    // Elimina al usuario
     await user.remove();
+
     return res.sendStatus(204);
   } catch (error) {
     if (error instanceof Error) {
@@ -264,6 +270,7 @@ export const deleteUser = async (req: Request, res: Response) => {
     }
   }
 };
+
 
 // ------- Agregar para jwt
 

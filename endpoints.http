@@ -26,7 +26,6 @@ Content-Type: application/json
 }
 
 ### Solicitud PUT UPDATE USER
-###Si el usuario no tiene perfil asociado, en el id de profile se debe asignar 0 de lo contrario se tiene ingresar el id de profile para actualizar el perfil del usuario
 PUT http://localhost:3000/api/users/id
 Content-Type: application/json
 
@@ -34,7 +33,6 @@ Content-Type: application/json
         "email": "ema@gmail.com",
         "password": "ema123",
         "profile": {
-            "id": 9,
             "firstName": "Emanuel",
             "lastName": "Lux",
             "dni": "40111222",
@@ -65,8 +63,8 @@ POST http://localhost:3000/api/signin
 Content-Type: application/json
 
   {
-    "email": "ema@gmail.com",
-    "password": "ema123"
+    "email": "zoe@gmail.com",
+    "password": "zoe123"
   }
 
 ##### ENDPOINTS RECIPES #####

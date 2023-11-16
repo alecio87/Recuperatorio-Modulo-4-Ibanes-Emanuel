@@ -27,7 +27,7 @@ export class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne((type) => Profile, (profile) => profile.user, { eager: true })
+  @OneToOne((type) => Profile, (profile) => profile.user, { eager: true, cascade: true })
   profile: Profile;
 
   @OneToMany(() => Recipe, (recipe) => recipe.user)

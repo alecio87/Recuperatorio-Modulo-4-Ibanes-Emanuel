@@ -31,7 +31,7 @@ export class Recipe extends BaseEntity {
   @Column()
   ingredients: string;
 
-  @Column()
+  @Column({ length: 1000 }) 
   preparation: string;
 
   @Column()
